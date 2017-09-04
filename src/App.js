@@ -60,6 +60,64 @@ function Post(props)
   );
 }
 
+class Clock extends Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount()
+  {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+  
+  componentWillUnmount()
+  {
+    clearInterval(this.timerID);
+  }
+
+  tick()
+  {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render()
+  {
+    return(
+      <div className="Clock">
+        <h3>It's now {this.state.date.toLocaleTimeString()}</h3>
+      </div>
+    );
+  }
+}
+
+class CounterButton extends Component
+{
+  state = { counter: 1 };
+
+  handleClick = () => {
+    this.setState((prevState) => ({
+      counter: prevState.counter + 1
+    }));
+  };
+
+  render()
+  {
+    return(
+      <button onClick={this.handleClick}>
+        {this.state.counter}
+      </button>
+    );
+  }
+}
+
 class App extends Component
 {
   render()
@@ -75,6 +133,11 @@ class App extends Component
           date={post.date}
           text={post.text}
           author={post.author}/>
+
+        <Clock />
+        <Clock />
+
+        <CounterButton />
       </div>
     );
   }
