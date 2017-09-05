@@ -91,8 +91,8 @@ class Clock extends Component
   render()
   {
     return(
-      <div className="Clock">
-        <h3>It's now {this.state.date.toLocaleTimeString()}</h3>
+      <div className = "Clock">
+        <h3>It's now { this.state.date.toLocaleTimeString() }</h3>
       </div>
     );
   }
@@ -100,22 +100,153 @@ class Clock extends Component
 
 class CounterButton extends Component
 {
-  state = { counter: 1 };
+  constructor(props)
+  {
+    super(props);
+    this.state = { counter: 1 };
 
-  handleClick = () => {
-    this.setState((prevState) => ({
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  // handleClick = () => {
+  //   this.setState(( prevState ) => ({
+  //     counter: prevState.counter + 1
+  //   }));
+  // };
+
+  handleClick()
+  {
+    this.setState(( prevState ) => ({
       counter: prevState.counter + 1
     }));
-  };
+  }
 
   render()
   {
     return(
-      <button onClick={this.handleClick}>
+      <button onClick = { this.handleClick }>
         {this.state.counter}
       </button>
     );
   }
+}
+
+class ToggleButton extends Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make 'this' work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick()
+  {
+    this.setState(( prevState ) => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
+  render()
+  {
+    return(
+      <button onClick = { this.handleClick }>
+        { this.state.isToggleOn ? 'ON' : 'OFF' }
+      </button>
+    );
+  }
+}
+
+class LoginControl extends Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = {isLoggedIn: false};
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+  }
+
+  handleLoginClick()
+  {
+    this.setState(() => ({isLoggedIn: true}));
+  }
+
+  handleLogoutClick()
+  {
+    this.setState(() => ({isLoggedIn: false}));
+  }
+
+  render()
+  {
+    const isLoggedIn = this.state.isLoggedIn;
+
+    // let button = null;
+
+    // if(isLoggedIn)
+    // {
+    //   button = <LogoutButton onClick={ this.handleLogoutClick }/>
+    // }
+    // else
+    // {
+    //   button = <LoginButton onClick={ this.handleLoginClick }/>
+    // }
+
+    return(
+      <div>
+        <Greetings isLoggedIn={isLoggedIn}/>
+
+        { isLoggedIn ? 
+          (<LogoutButton onClick={ this.handleLogoutClick }/>) : 
+          (<LoginButton onClick={ this.handleLoginClick }/>)
+        }
+      </div>
+    );
+  }
+}
+
+function UserGreeting(props)
+{
+  return <h2>Welcome Back</h2>;
+}
+
+function GuestGreeting(props)
+{
+  return <h2>Please sign up</h2>;
+}
+
+function Greetings(props)
+{
+  const isLoggedIn = props.isLoggedIn;
+
+  if (isLoggedIn)
+  {
+    return <UserGreeting />;
+  }
+  else
+  {
+    return <GuestGreeting />;
+  }
+}
+
+function LoginButton(props)
+{
+  return(
+    <button onClick={props.onClick}>
+      Login
+    </button>
+  );
+}
+
+function LogoutButton(props)
+{
+  return(
+    <button onClick={props.onClick}>
+      Logout
+    </button>
+  );  
 }
 
 class App extends Component
@@ -138,6 +269,8 @@ class App extends Component
         <Clock />
 
         <CounterButton />
+        <ToggleButton />
+        <LoginControl />
       </div>
     );
   }
