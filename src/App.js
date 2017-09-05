@@ -249,8 +249,26 @@ function LogoutButton(props)
   );  
 }
 
+function ListNumbers(props)
+{
+  const numbers = props.array;
+  const listDoubledNumbers = numbers.map((number) => 
+    <li key={number.toString()}>
+      {number * 2}
+    </li>
+  );
+
+  return(
+    <ul>
+      {listDoubledNumbers}
+    </ul>
+  );
+}
+
 class App extends Component
 {
+  state = {numbers: [1, 2, 3, 4, 5]};
+  
   render()
   {
     return(
@@ -271,6 +289,8 @@ class App extends Component
         <CounterButton />
         <ToggleButton />
         <LoginControl />
+      
+        <ListNumbers array={this.state.numbers}/>
       </div>
     );
   }
