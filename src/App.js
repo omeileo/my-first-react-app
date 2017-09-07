@@ -265,6 +265,16 @@ function ListNumbers(props)
   );
 }
 
+function Header(props)
+{
+  return(
+    <div className="App-header">
+    <img src={logo} className="App-logo" alt="logo"/>
+    <h2>{props.title}</h2>
+    </div>
+  );
+}
+
 class App extends Component
 {
   state = {numbers: [1, 2, 3, 4, 5]};
@@ -273,10 +283,7 @@ class App extends Component
   {
     return(
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h2>My Foray into React</h2>
-        </div>
+        <Header title="My Foray Into React"/>
         
         <Post
           date={post.date}
