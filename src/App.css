@@ -36,10 +36,20 @@
 .SearchBox
 {
   text-align: center;
-  
+
 }
 
 .ProductTable
 {
   text-align: center;
+}
+
+#main 
+{
+  margin-top: 6em;
+}
+
+#content 
+{
+  margin-top: 3em;
 }
