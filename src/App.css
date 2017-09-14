@@ -27,3 +27,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.FilterableProductTable
+{
+  text-align: center;
+}
+
+.SearchBox
+{
+  text-align: center;
+  
+}
+
+.ProductTable
+{
+  text-align: center;
+}
