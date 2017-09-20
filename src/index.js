@@ -5,7 +5,8 @@ import App from './App';
 import Form from './Form';
 import SearchableTable from './SearchableTable';
 import VotingApp from './VotingApp';
+import FormsMore from './Forms_More';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<VotingApp />, document.getElementById('root'));
+ReactDOM.render(<FormsMore />, document.getElementById('root'));
 registerServiceWorker();
